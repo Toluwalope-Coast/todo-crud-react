@@ -24,7 +24,7 @@ body {
   height: 100%;
   padding-inline: 10%;
 }
-header {
+header .container {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -41,6 +41,7 @@ header a {
   display: grid;
   grid-template-columns: 3fr 1fr;
   gap: 7rem;
+  padding: 4rem 7rem;
 }
 .task-details {
   background-color: var(--primary-font-color);
@@ -48,6 +49,7 @@ header a {
   padding: 2rem 1rem;
   margin-top: 1rem;
   box-shadow: 8px 8px 16px #909499, -8px -8px 16px #bfbfbf;
+  position: relative;
 }
 .task-details h4 {
   font-size: 1.2rem;
@@ -67,19 +69,22 @@ header a {
 .review {
   color: var(--secondary-color);
 }
-form {
+.add-task {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   margin-top: 1rem;
 }
-form h3 {
+.add-task h3,
+.update-modal h3 {
   margin-bottom: 1rem;
 }
 
-label,
-input {
+.add-task label,
+.update-modal label,
+.update-modal input,
+.add-task input {
   display: block;
 }
 input,
@@ -92,8 +97,10 @@ select {
 }
 label {
   margin-block: 0.3rem;
+  align-self: flex-start;
 }
-button {
+.add-task button,
+.update-modal button {
   background-color: var(--primary-color);
   color: var(--primary-font-color);
   display: block;
@@ -102,11 +109,12 @@ button {
   font-size: 0.8em;
   align-self: center;
   width: 60%;
+  cursor: pointer;
   border-radius: 0.3rem;
   border: 1px solid var(--primary-color);
 }
 
-.error {
+.add-task .error {
   color: red;
   font-size: 1rem;
   margin-top: 2rem;
@@ -114,4 +122,56 @@ button {
   border-radius: 0.5rem;
   border: 1px solid red;
   background-color: #ffbdbd;
+}
+
+.delete {
+  position: absolute;
+  top: 15%;
+  right: 5%;
+  background-color: var(--secondary-color);
+  padding: 0.4rem;
+  border-radius: 0.3rem;
+  color: var(--secondary-font-color);
+  cursor: pointer;
+}
+.update {
+  position: absolute;
+  bottom: 15%;
+  right: 5%;
+  background-color: var(--primary-color);
+  padding: 0.4rem;
+  border-radius: 0.3rem;
+  color: var(--primary-font-color);
+  cursor: pointer;
+}
+.update-modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10;
+}
+.update-modal form {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 30%;
+  min-height: 60%;
+  top: 20%;
+  left: 30%;
+  background-color: var(--primary-font-color);
+  border-radius: 5px;
+  padding: 3rem;
+  z-index: 100;
+}
+.close-modal {
+  position: absolute;
+  top: 2.2rem;
+  right: 2rem;
+  font-weight: 700;
+  cursor: pointer;
 }

@@ -4,7 +4,7 @@ import { TaskDetails } from "../components/TaskDetails";
 // import { Modal } from "../components/UpdateModal";
 import { useTaskContext } from "../hook/UseTasKContext";
 
-const Home = () => {
+const Category = () => {
     const { tasks, dispatch } = useTaskContext()
 
     // All Use states
@@ -38,4 +38,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default Category
