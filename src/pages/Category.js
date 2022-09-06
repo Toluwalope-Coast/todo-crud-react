@@ -1,38 +1,38 @@
 import { useEffect } from "react";
-import { NewTaskForm } from "../components/NewTaskForm";
-import { TaskDetails } from "../components/TaskDetails";
-// import { Modal } from "../components/UpdateModal";
-import { useTaskContext } from "../hook/UseTasKContext";
+import { useCategoryContext } from "../hook/UseCategoryContext"
+// import { NewTaskForm } from "../components/NewTaskForm";
+import { CategoryDetails } from "../components/CategoryDetails";
+
 
 const Category = () => {
-    const { tasks, dispatch } = useTaskContext()
+    const { category, dispatch } = useCategoryContext()
 
     // All Use states
     // const [openModal, setOpenModel] = useState(false)
 
 
     useEffect(() => {
-        const fetchTasks = async () => {
-            const response = await fetch('api/task')
+        const fetchCategory = async () => {
+            const response = await fetch('api/category')
             const jsonResponse = await response.json()
 
             if (response.ok) {
-                dispatch({ type: 'SET_TASKS', payload: jsonResponse })
+                dispatch({ type: 'SET_CATEGORY', payload: jsonResponse })
             }
         }
 
-        fetchTasks()
+        fetchCategory()
     })
 
     return (
         <div className="home">
             <div className="container" >
                 <div className="tasks">
-                    {tasks && tasks.map((task) => (
-                        <TaskDetails key={task._id} task={task} />
+                    {category && category.map((category) => (
+                        <CategoryDetails key={category._id} category={category} />
                     ))}
                 </div>
-                <NewTaskForm />
+                {/* <NewTaskForm /> */}
             </div>
         </div>
     )

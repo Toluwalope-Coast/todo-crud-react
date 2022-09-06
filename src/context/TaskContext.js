@@ -2,6 +2,7 @@ import { createContext, useReducer } from 'react'
 
 export const taskContext = createContext()
 
+
 export const taskReducer = (state, action) => {
     switch (action.type) {
         case 'SET_TASKS':
@@ -10,7 +11,7 @@ export const taskReducer = (state, action) => {
             }
         case 'CREATE_TASKS':
             return {
-                tasks: [action.payload, ...state.tasks]
+                tasks: [...state.tasks]
             }
         case 'DELETE_TASKS':
             return {
