@@ -5,9 +5,9 @@ import { useTaskContext } from "../hook/UseTasKContext"
 export const NewTaskForm = () => {
 
     const { dispatch } = useTaskContext()
-    const [title, setTitle] = useState('')
+    const [title, setTitle] = useState(null)
     const [categories, setCategories] = useState(null)
-    const [category, setCategory] = useState('')
+    const [category, setCategory] = useState(null)
     const [error, setError] = useState(null)
 
 
@@ -46,12 +46,13 @@ export const NewTaskForm = () => {
             setError(jsonResponse.error)
         }
         if (response.ok) {
-            setTitle('')
-            setCategory('')
-            setError(null)
             dispatch({ type: 'CREATE_TASKS', payload: jsonResponse })
-            console.log('New Task added', jsonResponse)
+
+            console.log(`Here run ${title} `)
         }
+        setTitle(null)
+        setCategory(null)
+        setError(null)
     }
 
 
@@ -59,13 +60,13 @@ export const NewTaskForm = () => {
         <form className="add-task" onSubmit={submit}>
             <h3>Add a New Task</h3>
 
-            <label for="title-selector">Task Title</label>
+            <label htmlFor="title-selector">Task Title</label>
             <input id="title-selector" type="text" required onChange={(event) => setTitle(event.target.value)} />
 
-            <label for="category-selector">Category :</label>
+            <label htmlFor="category-selector">Category :</label>
             <select name="" id="category-selector" required onChange={(event) => setCategory(event.target.value)}>
                 <option>Please select the Category</option>
-                {categories && categories.map((category) => <option value={category._id}>{category.name}</option>)}
+                {categories && categories.map((category) => <option value={category._id} key={category._id}>{category.name}</option>)}
             </select>
             <button>Add Task</button>
 

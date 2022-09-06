@@ -18,6 +18,7 @@ const Home = () => {
 
             if (response.ok) {
                 dispatch({ type: 'SET_TASKS', payload: jsonResponse })
+
             }
         }
 
@@ -28,7 +29,7 @@ const Home = () => {
         <div className="home">
             <div className="container" >
                 <div className="tasks">
-                    {tasks && tasks.map((task) => (
+                    {tasks == null ? "Content is Loading ........." : tasks.map((task) => (
                         <TaskDetails key={task._id} task={task} />
                     ))}
                 </div>
